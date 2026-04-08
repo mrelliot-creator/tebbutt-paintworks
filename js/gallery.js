@@ -1,7 +1,7 @@
 /* Gallery page only – dynamic GitHub API + lightbox */
 
-const OWNER = 'mrelliot-creator';   // ← Your GitHub username (already filled in)
-const REPO = 'tebbutt-paintworks';  // ← Your repo name (already filled in)
+const OWNER = 'mrelliot-creator';
+const REPO = 'tebbutt-paintworks';
 
 let currentImages = [];
 let currentIndex = 0;
