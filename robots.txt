@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mrelliot-creator.github.io/tebbutt-paintworks/sitemap.xml
