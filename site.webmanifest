@@ -1,0 +1,15 @@
+{
+  "name": "Tebbutt & Son Paintwork’s",
+  "short_name": "Tebbutt Paint",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f7f4",
+  "theme_color": "#0a2540",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
