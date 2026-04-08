@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 200" height="200" width="200" xmlns="http://www.w3.org/2000/svg">
+  
+  <circle fill="#0a2540" r="95" cy="100" cx="100"></circle>
+  
+  <rect fill="#e76f51" ry="8" rx="8" height="35" width="90" y="65" x="55"></rect>
+  
+  <line stroke-linecap="round" stroke-width="18" stroke="#e76f51" y2="125" x2="170" y1="82" x1="145"></line>
+  
+  <circle fill="#fff" r="8" cy="115" cx="72"></circle>
+  <circle fill="#fff" r="5" cy="122" cx="88"></circle>
+</svg>
