@@ -51,10 +51,10 @@ if (hamburger && nav) {
                     form.reset();
                     showFormMessage('✅ Thank you! Your free estimate request has been received.<br>We will contact you within 1 business day.', 'success');
                 } else {
-                    showFormMessage('❌ Sorry, something went wrong. Please try again or call YOUR_PHONE.', 'error');
+                    showFormMessage('❌ Sorry, something went wrong. Please try again or call 07903431503.', 'error');
                 }
             } catch (err) {
-                showFormMessage('❌ Unable to send request. Please email YOUR_EMAIL_HERE directly.', 'error');
+                showFormMessage('❌ Unable to send request. Please email tebbuttandson@gmail.com directly.', 'error');
             } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
