@@ -5,13 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
     
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('open');
-            const expanded = nav.classList.contains('open');
-            hamburger.setAttribute('aria-expanded', expanded);
-        });
-    }
+    // Mobile hamburger menu
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('.nav');
+
+if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        const isOpen = nav.classList.contains('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+        hamburger.textContent = isOpen ? '✕' : '☰';
+    });
+}
 
     // Estimate form handler (only on contact page)
     const form = document.getElementById('estimate-form');
