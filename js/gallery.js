@@ -1,4 +1,4 @@
-/* Gallery page only – dynamic GitHub API + lightbox */
+/* Gallery page only – dynamic GitHub API + lightbox (FIXED) */
 
 const OWNER = 'mrelliot-creator';
 const REPO = 'tebbutt-paintworks';
@@ -10,7 +10,7 @@ async function loadGallery() {
     const grid = document.getElementById('gallery-grid');
     const fallback = document.getElementById('gallery-fallback');
     
-    if (!grid) return; // Not on gallery page
+    if (!grid) return;
 
     try {
         const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/assets/gallery`;
@@ -20,7 +20,7 @@ async function loadGallery() {
         
         const files = await response.json();
         
-        // Filter only image files
+        // Only images
         const imageFiles = files.filter(file => 
             file.type === 'file' && /\.(jpe?g|png|webp)$/i.test(file.name)
         );
@@ -34,15 +34,16 @@ async function loadGallery() {
         currentImages = imageFiles;
         
         imageFiles.forEach((file, index) => {
-            const rawUrl = `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/assets/gallery/${file.name}`;
+            const imageUrl = file.download_url; // ✅ FIX HERE
             const caption = formatCaption(file.name);
             
             const item = document.createElement('div');
             item.className = 'gallery-item';
             item.innerHTML = `
-                <img src="${rawUrl}" alt="${caption}" loading="lazy">
+                <img src="${imageUrl}" alt="${caption}" loading="lazy">
                 <p class="caption">${caption}</p>
             `;
+            
             item.addEventListener('click', () => openLightbox(index));
             grid.appendChild(item);
         });
@@ -69,9 +70,8 @@ function openLightbox(index) {
     const captionEl = document.getElementById('lightbox-caption');
     
     const file = currentImages[currentIndex];
-    const rawUrl = `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/assets/gallery/${file.name}`;
     
-    img.src = rawUrl;
+    img.src = file.download_url; // ✅ FIX HERE
     captionEl.textContent = formatCaption(file.name);
     lightbox.style.display = 'flex';
     
@@ -96,8 +96,8 @@ function showNext() {
 
 function updateLightboxImage() {
     const file = currentImages[currentIndex];
-    const rawUrl = `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/assets/gallery/${file.name}`;
-    document.getElementById('lightbox-img').src = rawUrl;
+    
+    document.getElementById('lightbox-img').src = file.download_url; // ✅ FIX HERE
     document.getElementById('lightbox-caption').textContent = formatCaption(file.name);
 }
 
@@ -107,12 +107,10 @@ function handleLightboxKey(e) {
     if (e.key === 'ArrowRight') showNext();
 }
 
-// Initialize when gallery page loads
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('gallery-grid')) {
         loadGallery();
         
-        // Lightbox buttons
         const lightbox = document.getElementById('lightbox');
         const closeBtn = document.getElementById('close-lightbox');
         const prevBtn = document.getElementById('prev-btn');
@@ -122,8 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (prevBtn) prevBtn.addEventListener('click', showPrev);
         if (nextBtn) nextBtn.addEventListener('click', showNext);
         
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+        }
     }
 });
