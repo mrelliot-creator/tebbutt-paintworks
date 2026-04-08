@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Request a free, no-obligation estimate from Tebbutt &amp; Son Paintwork’s. Fast response guaranteed.">
+    <title>Request a Free Estimate | Tebbutt &amp; Son Paintwork’s</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Tebbutt &amp; Son Paintwork’s</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Get Estimate</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" aria-label="Toggle menu">☰</button>
+            <div class="cta-header">
+                <a href="tel:YOUR_PHONE" class="btn-secondary">Call YOUR_PHONE</a>
+                <a href="contact.html" class="btn-primary">Free Estimate</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section contact-page">
+            <div class="container">
+                <h1>Request Your Free Estimate</h1>
+                <p class="intro">Tell us about your project and we’ll get back to you within one business day with a clear, fixed-price quote.</p>
+                
+                <form id="estimate-form" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" class="estimate-form">
+                    <input type="hidden" name="_subject" value="New Free Estimate Request – Tebbutt &amp; Son Paintwork’s">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="honeypot" style="display:none;" autocomplete="off">
+                    
+                    <div class="form-grid">
+                        <div>
+                            <label for="name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div>
+                            <label for="address">Project Address / Area</label>
+                            <input type="text" id="address" name="address" placeholder="Deal or surrounding area">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="project-type">Project Type</label>
+                        <select id="project-type" name="project-type">
+                            <option value="">Select one...</option>
+                            <option value="Interior Painting">Interior Painting</option>
+                            <option value="Exterior Painting">Exterior Painting</option>
+                            <option value="Woodwork &amp; Trim">Woodwork &amp; Trim</option>
+                            <option value="Feature Wall">Feature Wall</option>
+                            <option value="Wallpaper Removal">Wallpaper Removal</option>
+                            <option value="Commercial Work">Commercial / Office</option>
+                            <option value="Touch-ups">Touch-ups &amp; Maintenance</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="dates">Preferred Dates / Times</label>
+                        <input type="text" id="dates" name="dates" placeholder="e.g. Week of 15 April or flexible">
+                    </div>
+                    
+                    <div>
+                        <label for="budget">Budget Range (optional)</label>
+                        <input type="text" id="budget" name="budget" placeholder="£500–£1500">
+                    </div>
+                    
+                    <div>
+                        <label for="message">Tell us more about your project</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Any details that will help us prepare an accurate quote..."></textarea>
+                    </div>
+                    
+                    <p class="photo-note">📸 Photos help us give the most accurate quote. Feel free to email them to <a href="mailto:YOUR_EMAIL_HERE">YOUR_EMAIL_HERE</a> after submitting this form.</p>
+                    
+                    <div class="consent">
+                        <label>
+                            <input type="checkbox" name="consent" required>
+                            I consent to Tebbutt &amp; Son contacting me about my estimate request
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary large">Send Free Estimate Request</button>
+                    
+                    <div id="form-feedback" class="form-feedback hidden"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Tebbutt &amp; Son Paintwork’s</h3>
+                    <p>Professional painting &amp; decorating since 2000</p>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p><a href="tel:07903431503">YOUR_PHONE</a></p>
+                    <p><a href="mailto:tebbuttandson@gmail.com">YOUR_EMAIL_HERE</a></p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Get Estimate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2026 Tebbutt &amp; Son Paintwork’s. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
