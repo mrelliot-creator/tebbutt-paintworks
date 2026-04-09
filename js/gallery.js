@@ -1,129 +1,66 @@
-/* Gallery page only – dynamic GitHub API + lightbox (FIXED) */
+/* PREMIUM GALLERY – FAST, RELIABLE, NO API */
 
-const OWNER = 'mrelliot-creator';
-const REPO = 'tebbutt-paintworks';
+const galleryImages = [
+    "assets/gallery/img1.jpg",
+    "assets/gallery/img2.jpg",
+    "assets/gallery/img3.jpg",
+    "assets/gallery/img4.jpg"
+    // 👉 ADD YOUR IMAGES HERE
+];
 
-let currentImages = [];
 let currentIndex = 0;
 
-async function loadGallery() {
+function loadGallery() {
     const grid = document.getElementById('gallery-grid');
-    const fallback = document.getElementById('gallery-fallback');
-    
     if (!grid) return;
 
-    try {
-        const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/assets/gallery`;
-        const response = await fetch(apiUrl);
-        
-        if (!response.ok) throw new Error('GitHub API error');
-        
-        const files = await response.json();
-        
-        // Only images
-        const imageFiles = files.filter(file => 
-            file.type === 'file' && /\.(jpe?g|png|webp)$/i.test(file.name)
-        );
-        
-        if (imageFiles.length === 0) {
-            fallback.classList.remove('hidden');
-            return;
-        }
-        
-        grid.innerHTML = '';
-        currentImages = imageFiles;
-        
-        imageFiles.forEach((file, index) => {
-            const imageUrl = file.download_url; // ✅ FIX HERE
-            const caption = formatCaption(file.name);
-            
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.innerHTML = `
-                <img src="${imageUrl}" alt="${caption}" loading="lazy">
-                <p class="caption">${caption}</p>
-            `;
-            
-            item.addEventListener('click', () => openLightbox(index));
-            grid.appendChild(item);
-        });
-        
-        fallback.classList.add('hidden');
-        
-    } catch (err) {
-        console.error(err);
-        fallback.classList.remove('hidden');
-    }
-}
+    grid.innerHTML = '';
 
-function formatCaption(filename) {
-    return filename
-        .replace(/\.(jpe?g|png|webp)$/i, '')
-        .replace(/[-_]/g, ' ')
-        .replace(/\b\w/g, char => char.toUpperCase());
+    galleryImages.forEach((src, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+
+        item.innerHTML = `
+            <img src="${src}" alt="Project image" loading="lazy">
+        `;
+
+        item.addEventListener('click', () => openLightbox(index));
+        grid.appendChild(item);
+    });
 }
 
 function openLightbox(index) {
     currentIndex = index;
+
     const lightbox = document.getElementById('lightbox');
     const img = document.getElementById('lightbox-img');
-    const captionEl = document.getElementById('lightbox-caption');
-    
-    const file = currentImages[currentIndex];
-    
-    img.src = file.download_url; // ✅ FIX HERE
-    captionEl.textContent = formatCaption(file.name);
+
+    img.src = galleryImages[currentIndex];
     lightbox.style.display = 'flex';
-    
-    document.addEventListener('keydown', handleLightboxKey);
 }
 
 function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.style.display = 'none';
-    document.removeEventListener('keydown', handleLightboxKey);
+    document.getElementById('lightbox').style.display = 'none';
 }
 
 function showPrev() {
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-    updateLightboxImage();
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateImage();
 }
 
 function showNext() {
-    currentIndex = (currentIndex + 1) % currentImages.length;
-    updateLightboxImage();
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    updateImage();
 }
 
-function updateLightboxImage() {
-    const file = currentImages[currentIndex];
-    
-    document.getElementById('lightbox-img').src = file.download_url; // ✅ FIX HERE
-    document.getElementById('lightbox-caption').textContent = formatCaption(file.name);
-}
-
-function handleLightboxKey(e) {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') showPrev();
-    if (e.key === 'ArrowRight') showNext();
+function updateImage() {
+    document.getElementById('lightbox-img').src = galleryImages[currentIndex];
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('gallery-grid')) {
-        loadGallery();
-        
-        const lightbox = document.getElementById('lightbox');
-        const closeBtn = document.getElementById('close-lightbox');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        
-        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-        if (prevBtn) prevBtn.addEventListener('click', showPrev);
-        if (nextBtn) nextBtn.addEventListener('click', showNext);
-        
-        if (lightbox) {
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) closeLightbox();
-            });
-        }
-    }
+    loadGallery();
+
+    document.getElementById('close-lightbox')?.addEventListener('click', closeLightbox);
+    document.getElementById('prev-btn')?.addEventListener('click', showPrev);
+    document.getElementById('next-btn')?.addEventListener('click', showNext);
 });
