@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Tebbutt &amp; Son Paintwork’s</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Tebbutt &amp; Son</h1>
+                <p class="tag">Paintwork’s</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Free Estimate</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" aria-label="Toggle menu">☰</button>
+            <div class="cta-header">
+                <a href="tel:YOUR_PHONE" class="btn-secondary">Call YOUR_PHONE</a>
+                <a href="contact.html" class="btn-primary">Free Estimate</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1>Our Recent Work</h1>
+                <div id="gallery-grid" class="masonry-grid"></div>
+                <div id="gallery-fallback" class="fallback hidden">No photos yet. Upload images to the assets/gallery folder – they appear instantly.</div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <button id="close-lightbox" class="close-btn">×</button>
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-caption"></p>
+            <div class="lightbox-nav">
+                <button id="prev-btn">‹</button>
+                <button id="next-btn">›</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>Tebbutt &amp; Son Paintwork’s</strong></p>
+            <p><a href="tel:YOUR_PHONE">YOUR_PHONE</a> • <a href="mailto:YOUR_EMAIL_HERE">YOUR_EMAIL_HERE</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>
